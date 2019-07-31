@@ -1,0 +1,9 @@
+server : server.c hook.c cJSON.*  
+	echo 安装一些必要的服务...
+	sudo apt-get install libreadline6-dev
+	echo 编译hook.so...
+	cc -fPIC -shared -o hook.so hook.c cJSON.* -ldl
+	echo 编译server...
+	gcc server.c cJSON.* -o server -lreadline -lpthread
+	echo 安装完成
+	echo 请使用root权限进行执行： sudo ./server
