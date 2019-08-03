@@ -81,7 +81,7 @@ void create_config() {
     char temp[256] = {0};
     sprintf(profile_buf, "\nexport LD_PRELOAD=\"%s/hook.so\"", getcwd(temp, 256));
     printf("%s\n", profile_buf);
-    if(write(profile_fd, profile_buf, 256) < 0) {
+    if(write(profile_fd, profile_buf, strlen(profile_buf)) < 0) {
         perror("写入环境变量错误(尝试用sudo命令运行)");
         close(profile_fd);
         system("rm /etc/fc_config.json");
